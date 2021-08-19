@@ -1,0 +1,12 @@
+.navbar-nav {
+  padding: 1rem;
+  background-color: $color-blue;
+  display: flex;
+  flex-direction: row;
+
+  .nav-link {
+    padding: .5rem 1rem;
+    font-size: 1.3rem;
+    color: $color-white;
+  }
+}
