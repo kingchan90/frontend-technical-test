@@ -1,4 +1,10 @@
-import { Job, JobAllocations } from "../common/types";
+import {
+  Activity,
+  ActivityAllocations,
+  Job,
+  JobAllocations,
+  Resource,
+} from "../common/types";
 import dayjs from "dayjs";
 
 /**
@@ -41,9 +47,69 @@ export const printDate = (start: string, end: string) => {
       date: startObj.format("ddd MMM D YYYY"),
       time: `${startObj.hour()} - ${endObj.hour()}`,
     };
-  } 
-  return {
-    date: `${startObj.format("ddd MMM D YYYY")} - ${endObj.format("ddd MMM D YYYY")}`,
-    time: ''
   }
+  return {
+    date: `${startObj.format("ddd MMM D YYYY")} - ${endObj.format(
+      "ddd MMM D YYYY"
+    )}`,
+    time: "",
+  };
 };
+
+/**
+ * Transform data
+ * @return {array} The transformed data
+ */
+export const transformData = (
+  jobs: Job[],
+  resources: Resource[],
+  activities: Activity[],
+  jobAllocations: JobAllocations[],
+  activityAllocations: ActivityAllocations[]
+) => {
+  //convert jobs and activities array to object
+  const jobsObject = convertArrayToObject(jobs, "id", 'job');
+  const activitiesObject = convertArrayToObject(activities, "id", "activity");
+  const mappedJobAllocation = mapAllocationToResouces(jobAllocations, jobsObject, 'jobId');
+  const mappedActivityAllocations = mapAllocationToResouces(activityAllocations, activitiesObject, 'activityId');
+  return resources.map(({ id: resourceId, name: resourceName }) => { 
+    return {
+      resourceName,
+      resourceId,
+      allocations: [
+        mappedActivityAllocations[resourceId],
+        mappedJobAllocation[resourceId],
+      ].filter(obj=>obj)
+    };
+  });
+};
+
+/**
+ * Convert array to object by key
+ * @return {object} The converted object
+ */
+const convertArrayToObject = (
+  array: any[],
+  key: string,
+  allocType?: any
+) => {
+  return array.reduce((acc, curr) => {
+    const {name, start, end } = curr
+    acc[curr[key]] = {allocType, name, start, end, };
+    return acc;
+  }, {});
+};
+
+/**
+ * Transform data from jobs, activities to locations
+ * @return {object} The converted object
+ */
+const mapAllocationToResouces = (allocation: any, arrayData: any, key: string) => {
+  return allocation.reduce(
+    (obj: any, item: any) => ({
+      ...obj,
+      [item["resourceId"]]: arrayData[item[key]]
+    }),
+    {}
+  );
+}
