@@ -1,0 +1,21 @@
+.content-right {
+  padding: 15px;
+  flex: 1 1 100%;
+  @media screen and (min-width: $MD-UP) {
+    flex: 1 1 70%;
+    max-width: 70%;
+    height: calc(100vh - 180px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+.content-right-item {
+  height: 160px;
+  background-color: $color-mint;
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

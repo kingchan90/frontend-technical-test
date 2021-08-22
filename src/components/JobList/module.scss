@@ -1,0 +1,53 @@
+.job-list {
+  flex: 1 1;
+  background-color: $color-mint;
+  padding: 15px;
+
+  @media screen and (min-width: $MD-UP) {
+    flex-basis: 30%;
+    max-width: 30%;
+    height: calc(100vh - 180px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+.job-item {
+  background-color: $color-white;
+  padding: 15px;
+  margin-bottom: 15px;
+  min-height: 132px;
+  color: $color-gray;
+  position: relative;
+  min-height: 300px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .title,
+  .time {
+    font-weight: bold;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: $color-blue-wood;
+  }
+
+  .id {
+    font-weight: normal;
+    color: $color-gray;
+  }
+}
+.location-count {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

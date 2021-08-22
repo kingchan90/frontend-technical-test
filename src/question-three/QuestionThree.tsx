@@ -4,20 +4,30 @@ import { IAppTabContainer } from "../common/types"
 import { SectionGroup } from "../components/section/SectionGroup"
 import { SectionPanel } from "../components/section/SectionPanel"
 
-import Navbar from "./Navbar";
+import Layout from "../components/Layout";
+import Sidebar from "../components/Sidebar";
+import ContentWrapper from "../components/ContentWrapper";
+import Navbar from "../components/Navbar";
+import JobList from "../components/JobList";
+import ContentRight from "../components/ContentRight";
 
 import "./QuestionThree.scss"
 
-export const QuestionThree: React.FC<IAppTabContainer> = () => {
-
+export const QuestionThree: React.FC<IAppTabContainer> = ({service}) => {
   const menu = ["Home", "About", "Jobs", "Contact"];
+
   return (
     <SectionGroup>
-
       <SectionPanel>
-        <Navbar menu={menu} />
+        <Layout>
+          <Sidebar/>
+          <Navbar menu={menu} />
+          <ContentWrapper>
+            <JobList service={service}/>
+            <ContentRight />
+          </ContentWrapper>
+        </Layout>
       </SectionPanel>
-
     </SectionGroup>
   )
 }

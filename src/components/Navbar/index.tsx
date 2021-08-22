@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 interface NavbarProps {
   menu: any[];
 }
-const Navbar = (props: NavbarProps) => {
+const Navbar:  React.FC<NavbarProps> = (props: NavbarProps) => {
   const { menu } = props;
   let key = uuidv4();
   return (

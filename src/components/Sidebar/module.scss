@@ -1,0 +1,37 @@
+.nav-sidebar {
+  position: fixed;
+  top: 101px;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  z-index: $nav-sidebar-zindex;
+  background-color: $color-blue-wood;
+}
+.sidebar-top-level-items {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar-top-level-item,
+.sidebar-toggler {
+  width: 40px;
+  height: 40px;
+  background: $color-light-gray;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.sidebar-top-level-item {
+  margin: 14px 5px;
+}
+
+.nav-sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-toggler {
+  margin: auto 4px 14px;
+}

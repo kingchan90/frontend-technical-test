@@ -44,7 +44,7 @@
 }
 
 .app__content-blank {
-  height: calc(100vh - 92px)
+  height: calc(100vh - 101px);
 }
 
 .section__panel {
@@ -55,4 +55,17 @@
 
 .section__panel:last-child {
   border-bottom-color: transparent
+}
+
+@media screen and (max-width: 767px) {
+  .app__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+  .app__content-blank {
+    padding-top: 101px;
+  }
 }
