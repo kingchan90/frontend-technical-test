@@ -1,0 +1,1 @@
+export const DEFAULT_ERROR_TEXT = 'There is error when fetching data!'
